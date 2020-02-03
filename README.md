@@ -1,4 +1,5 @@
 ![GitHub](https://img.shields.io/github/license/joaonrb/euro-exchange-rates)
+[![Build Status](https://travis-ci.com/joaonrb/euro-exchange-rates.svg?branch=master)](https://travis-ci.com/joaonrb/euro-exchange-rates)
 [![Go Report Card](https://goreportcard.com/badge/github.com/joaonrb/euro-exchange-rates)](https://goreportcard.com/report/github.com/joaonrb/euro-exchange-rates)
 
 # Euro Exchange Rates

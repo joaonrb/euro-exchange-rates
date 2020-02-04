@@ -6,7 +6,7 @@ import (
 	"time"
 )
 
-func TestNewCurrency(t *testing.T) {
+func TestNewCurrencyRate(t *testing.T) {
 	data := []struct {
 		name string
 		rate float64
@@ -17,14 +17,14 @@ func TestNewCurrency(t *testing.T) {
 	}
 	now := time.Now().UTC()
 	for _, d := range data {
-		c := NewCurrency(d.name, d.rate, now)
+		c := NewCurrencyRate(d.name, d.rate, now)
 		Assert(t, c.Name() == d.name, "name attribute was not the expected: %s != %s", c.Name(), d.name)
 		Assert(t, c.Rate() == d.rate, "rate attribute was not the expected: %f != %f", c.Rate, d.rate)
 		Assert(t, c.LastUpdate() == now, "name attribute was not the expected: %s != %s", c.LastUpdate(), now)
 	}
 }
 
-func TestCurrencyConvertToEuros(t *testing.T) {
+func TestCurrencyRateConvertToEuros(t *testing.T) {
 	var amount uint64 = 1000000
 	data := []struct {
 		name     string
@@ -37,13 +37,14 @@ func TestCurrencyConvertToEuros(t *testing.T) {
 	}
 	now := time.Now().UTC()
 	for _, d := range data {
-		c := NewCurrency(d.name, d.rate, now)
+		c := NewCurrencyRate(d.name, d.rate, now)
 		converted := c.ConvertToEuros(amount)
-		Assert(t, converted == d.expected, "expected amount from ConvertToEuros was not the expected: %d != %d", converted, d.expected)
+		Assert(t, converted == d.expected, "expected amount from ConvertToEuros was not the expected: %d != %d",
+			converted, d.expected)
 	}
 }
 
-func TestCurrencyConvertEuros(t *testing.T) {
+func TestCurrencyRateConvertEuros(t *testing.T) {
 	var amount uint64 = 1000000
 	data := []struct {
 		name     string
@@ -56,13 +57,14 @@ func TestCurrencyConvertEuros(t *testing.T) {
 	}
 	now := time.Now().UTC()
 	for _, d := range data {
-		c := NewCurrency(d.name, d.rate, now)
+		c := NewCurrencyRate(d.name, d.rate, now)
 		converted := c.ConvertEuros(amount)
-		Assert(t, converted == d.expected, "expected amount from ConvertEuros was not the expected: %d != %d", converted, d.expected)
+		Assert(t, converted == d.expected, "expected amount from ConvertEuros was not the expected: %d != %d",
+			converted, d.expected)
 	}
 }
 
-func TestCurrencyToString(t *testing.T) {
+func TestCurrencyRateToString(t *testing.T) {
 	var amount uint64 = 1000000
 	data := []struct {
 		name     string
@@ -75,8 +77,9 @@ func TestCurrencyToString(t *testing.T) {
 	}
 	now := time.Now().UTC()
 	for _, d := range data {
-		c := NewCurrency(d.name, d.rate, now)
+		c := NewCurrencyRate(d.name, d.rate, now)
 		repr := c.ToString(int64(amount))
-		Assert(t, repr == d.expected, "expected representation from ToString was not the expected: %s != %s", repr, d.expected)
+		Assert(t, repr == d.expected, "expected representation from ToString was not the expected: %s != %s", repr,
+			d.expected)
 	}
 }

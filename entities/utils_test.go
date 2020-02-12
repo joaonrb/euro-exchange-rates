@@ -2,6 +2,7 @@ package entities
 
 import (
 	. "gotest.tools/assert"
+	"math"
 	"testing"
 )
 
@@ -24,8 +25,10 @@ func TestSumToMicros(t *testing.T) {
 }
 
 func TestMicrosToSum(t *testing.T) {
+	threshold := 1e-6
 	for _, d := range utilsData {
 		r := MicrosToSum(d.micros)
-		Assert(t, r == d.sum, "MicrosToSum(%d) got %f instead of the expected %f", d.micros, r, d.sum)
+		Assert(t, math.Abs(r-d.sum) < threshold, "MicrosToSum(%d) got %f instead of the expected %f",
+			d.micros, r, d.sum)
 	}
 }

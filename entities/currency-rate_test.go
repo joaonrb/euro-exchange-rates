@@ -25,11 +25,11 @@ func TestNewCurrencyRate(t *testing.T) {
 }
 
 func TestCurrencyRateConvertToEuros(t *testing.T) {
-	var amount uint64 = 1000000
+	var amount int64 = 1000000
 	data := []struct {
 		name     string
 		rate     float64
-		expected uint64
+		expected int64
 	}{
 		{"IDR", 15091.51, 15091510000},
 		{"USD", 1.1029, 1102900},
@@ -45,11 +45,11 @@ func TestCurrencyRateConvertToEuros(t *testing.T) {
 }
 
 func TestCurrencyRateConvertEuros(t *testing.T) {
-	var amount uint64 = 1000000
+	var amount int64 = 1000000
 	data := []struct {
 		name     string
 		rate     float64
-		expected uint64
+		expected int64
 	}{
 		{"IDR", 15091.51, 66},
 		{"USD", 1.1029, 906700},

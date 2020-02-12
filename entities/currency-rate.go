@@ -14,9 +14,9 @@ type CurrencyRate interface {
 	// LastUpdate holds the date this currencyRate was last updated.
 	LastUpdate() time.Time
 	// ConvertToEuros convert "amount" of this currencyRate to euros. Amount is in micros.
-	ConvertToEuros(amount uint64) uint64
+	ConvertToEuros(amount int64) int64
 	// ConvertEuros convert "amount" euros to this currencyRate. Amount is in micros.
-	ConvertEuros(amount uint64) uint64
+	ConvertEuros(amount int64) int64
 	// ToString returns the string representation of the "amount" in this currencyRate.
 	ToString(amount int64) string
 }
@@ -48,12 +48,12 @@ func (c *currencyRate) LastUpdate() time.Time {
 	return c.lastUpdate
 }
 
-func (c *currencyRate) ConvertToEuros(amount uint64) uint64 {
-	return uint64(float64(amount) * c.Rate())
+func (c *currencyRate) ConvertToEuros(amount int64) int64 {
+	return int64(float64(amount) * c.Rate())
 }
 
-func (c *currencyRate) ConvertEuros(amount uint64) uint64 {
-	return uint64(float64(amount) / c.Rate())
+func (c *currencyRate) ConvertEuros(amount int64) int64 {
+	return int64(float64(amount) / c.Rate())
 }
 
 func (c *currencyRate) ToString(amount int64) string {
